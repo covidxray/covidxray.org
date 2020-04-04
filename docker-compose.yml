@@ -3,7 +3,7 @@ services:
   web:
     image: "compose-flask"
     ports:
-      - "5000:5000"
+      - "5000:5002"
     volumes:
       - .:/covid
   redis:
