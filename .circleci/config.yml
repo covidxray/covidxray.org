@@ -1,0 +1,23 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: kroniak/ssh-client
+    steps:
+      - checkout
+      - run:
+          name: "Deploy covid Product"
+          command: |
+            mkdir -p ~/.ssh && chmod 700 ~/.ssh
+            echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+            echo -e "Host *\n\tLogLevel ERROR\n\n" >> ~/.ssh/config
+            echo -e "Host *\n\tUserKnownHostsFile /dev/null\n\n" >> ~/.ssh/config
+            touch deploy_covid
+            echo $deploy_covid > deploy_covid
+            chmod +x deploy_covid
+            ./deploy_covid
+workflows:
+  version: 2
+  workflow:
+    jobs:
+    - build

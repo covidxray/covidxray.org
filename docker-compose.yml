@@ -1,0 +1,10 @@
+version: '3'
+services:
+  web:
+    image: "compose-flask"
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/covid
+  redis:
+    image: "redis:alpine"
