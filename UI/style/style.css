@@ -1,0 +1,53 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.nav-bar-maincolor {
+    background-color: #001E70;
+    color: white;
+}
+
+.main-content{
+    background-color: rgb(255, 255, 255);
+    background-image: url('../pictures/mainbackground.png');
+    background-size: cover;
+}
+.footer-copyright{
+    background-color: rgb(238, 238, 238);
+}
+
+.info-text-margin{
+    margin-top: 15px; margin-bottom: 15px;
+}
+
+.main-panel-margin{
+    height: 70vh; padding-top: 20vh
+}
+
+.card-margin{
+    margin-bottom: 20px;
+}
+
+.card-style{
+    box-shadow: none;
+}
+.card-style:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.image-style{
+    max-height:200px; width:100%;object-fit: cover; 
+}
+
+.insert-picture-style{
+    background-color: aliceblue;
+}
+.inside-why-layout{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.why-content-center{
+    min-height: 300px;
+}
