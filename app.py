@@ -42,9 +42,8 @@ def predict():
         else:
             for name, prob in img_result['condition rate']:
                 condition_similarity_rate.append({'y': round(float(prob), 3), 'name': name})
-            print(condition_similarity_rate)
             return jsonify(
-                condition_similarity_rate=condition_similarity_rate
+                condition_similarity_rate=condition_similarity_rate,
             ), 200
     else:
         file_name = "NOT_DETECTED/%s.jpg" % str(uuid.uuid4())
