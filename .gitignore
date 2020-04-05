@@ -2,3 +2,5 @@
 covid-dataset/
 covid-19/
 xray-dataset/
+
+*.pyc
