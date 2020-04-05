@@ -7,7 +7,7 @@
               <h2>Why Covid-xray?</h2>
               <p>Chest x-ray can be a fast, effective, and affordable test to evaluate coronavirus-related pneumonia. We suggest the use of AI as a supportive tool for the interpretation of chest x-ray exams, as below.</p>
 
-              <button class="btn btn-primary">FeedBack</button>
+              <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Scan now</button>
           </div>
           <div class="col-md-6 align-self-center">
         
@@ -29,8 +29,9 @@
                   <div class="card card-style">
                       <img class="card-img-top image-style" src="{{ url_for('static',filename='pictures/1.png') }}" alt="Card image">
                       <div class="card-body">
-                          <h4 class="card-title">Case One</h4>
-                          <p class="card-text">Use as a supportive tool during case overload, which can likely lead to low reading quality</p>
+                          <h4 class="card-title">Covid-19</h4>
+                          <p class="card-text">Red color represent as the Covid-19 case which dected by our AI model.
+                          </p>
                       </div>
                   </div>
               </div>
@@ -38,8 +39,8 @@
                   <div class="card card-style">
                       <img class="card-img-top image-style" src="{{ url_for('static',filename='pictures/2.png') }}" alt="Card image">
                       <div class="card-body">
-                          <h4 class="card-title">Case two</h4>
-                          <p class="card-text">Use with portable x-ray devices to fast-track test results and decision-making in advance to the PCR results</p>
+                          <h4 class="card-title">Pneumonia</h4>
+                          <p class="card-text">Black color represent as the Pneumonia case which dected by our AI model.</p>
                       </div>
                   </div>
               </div>
@@ -47,8 +48,8 @@
                   <div class="card card-style">
                       <img class="card-img-top image-style" src="{{ url_for('static',filename='pictures/3.png') }}" alt="Card image">
                       <div class="card-body">
-                          <h4 class="card-title">Case three</h4>
-                          <p class="card-text">Use when regular monitoring is required among patients showing mild symptoms,, in order to identify and/or triage patients by the progression of symptoms</p>
+                          <h4 class="card-title">NORMAL</h4>
+                          <p class="card-text">Sky color represent as the NORMAL case which dected by our AI model.</p>
                       </div>
                   </div>
               </div>
@@ -56,5 +57,92 @@
       </div>
   </div>
 </section>
+
+<div class="l_service__technology__container">
+    <div class="container info-text-margin">
+        <h2 class="text-center">Technology</h2>
+    </div>
+    <div class="technology__wrapper">
+        <div class="l_center">
+            <div class="flex-item">
+                <div class="c_card__img">
+                    <img src="https://pytorch.org/assets/images/pytorch-logo.png">
+                </div>
+                <div class="c_text_card">
+                    <h1>Pytorch</h1>
+                    <p>Tools & Libraries. A rich ecosystem of tools and libraries extends PyTorch and supports development in computer vision, NLP and more.</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="c_card__img">
+                    <img src="https://pluralsight.imgix.net/paths/python-7be70baaac.png">
+                </div>
+                <div class="c_text_card">
+                    <h1>Python</h1>
+                    <p>Python is an interpreted, high-level, general-purpose programming language</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="c_card__img">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg">
+                </div>
+                <div class="c_text_card">
+                    <h1>Opencv</h1>
+                    <p>OpenCV is a library of programming functions mainly aimed at real-time computer vision. Originally developed by Intel, it was later supported by Willow Garage then Itseez</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="c_card__img">
+                    <img src="https://miro.medium.com/max/4000/0*4Z6mwORGhtSAgeQ2.png">
+                </div>
+                <div class="c_text_card">
+                    <h1>Tensorflow</h1>
+                    <p>TensorFlow is a free and open-source software library for dataflow and differentiable programming across a range of tasks. It is a symbolic math library, and is also used for machine learning applications such as neural networks.</p>
+                </div>
+            </div>
+
+        </div>
+     </div>
+</div>
+
+<div class="l_container__question">
+    <h3>Frequently Asked Questions?</h3>
+    <div class="accordion">
+      <div class="accordion-item">
+          <a>How can AI help doctors fight coronavirus?</a>
+          <div class="content active">
+            <p>Answer: It’s a global pandemic.
+                We need all the help we can get
+                for efficient and effective control of the pandemic.
+                Even from AI.</p>
+          </div>
+      </div>
+      <div class="accordion-item">
+          <a>What is covidxray?</a>
+          <div class="content active">
+            <p>Answer: An AI tool that supports coronavirus management</p>
+          </div>
+      </div>
+      <div class="accordion-item">
+        <a>How to use it?</a>
+        <div class="content active">
+        <p>Answer: It is simple, you can drop your x-ray image to our system,than our AI will give your the insight about covid 19 base on your xray image</p>
+          <h4>Please do not claim diagnostic performance of a model without a clinical study! This is not a kaggle competition dataset.</h4>
+        </div>
+      </div>
+    </div>
+  
+</div>
+
+<div class="l_footer__top">
+    <div class="l_top__footer__boder">
+      <div class="c_left__footer">
+         <h2>Covid-xray</h2>
+         <p class="c_join__team"> We’re hiring talented people in a variety of 
+         <br>technical and nontechnical roles to join our 
+         <br>team in Cambodia.</p>
+      </div>
+  </div>
+ </div>
 
 {% endblock %}

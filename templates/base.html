@@ -1,10 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Covid-19 X-Ray</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Covid-19 X-Ray</title>
+   
+    <link rel="icon" href="{{ url_for('static',filename='icon/favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static',filename='icon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static',filename='icon/favicon-16x16.png') }}">
+ 
+
+    <!-- Meta for SEO -->
+    <meta name="description"
+          content="Chest x-ray can be a fast, effective, and affordable test to evaluate coronavirus-related pneumonia. We suggest the use of AI as a supportive tool for the interpretation of chest x-ray exams, as below.">
+    <meta name="og:site_name" content="A2A Digital">
+    <meta property="og:type"  content="website" />
+    <meta property="og:image" content="https://www.covidxray.org/static/pictures/doctorspraying.png">
+    <meta property="og:title" content="Covid-xray">
+    <meta property="og:description"
+          content="Chest x-ray can be a fast, effective, and affordable test to evaluate coronavirus-related pneumonia. We suggest the use of AI as a supportive tool for the interpretation of chest x-ray exams, as below.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.covidxray.org">
+    <meta name="twitter:image" content="https://www.covidxray.org/static/pictures/doctorspraying.png">
+    <meta name="twitter:title" content="Covid-xray">
+    <meta name="twitter:description"
+          content="Chest x-ray can be a fast, effective, and affordable test to evaluate coronavirus-related pneumonia. We suggest the use of AI as a supportive tool for the interpretation of chest x-ray exams, as below.">
+    <meta itemprop="description"
+          content="Chest x-ray can be a fast, effective, and affordable test to evaluate coronavirus-related pneumonia. We suggest the use of AI as a supportive tool for the interpretation of chest x-ray exams, as below.">
+    <meta itemprop="image" content="https://www.covidxray.org/static/pictures/doctorspraying.png">
+    <meta property="og:locale">
+    <link rel="canonical">
+    <meta name="keywords">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -22,10 +49,10 @@
           <div class="collapse navbar-collapse" id="navbarsExample07">
               <ul class="navbar-nav ml-auto">
                   <li class="nav-item active">
-                      <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-warning">Scan Now</button>
+                      <button type="button" class="btn btn-warning">Feedback</button>
                   </li>
                   <li class="nav-item active">
-                      <a class="nav-link" href="#">Why Covid-xray?<span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="#">What is your thought?<span class="sr-only">(current)</span></a>
                   </li>
               </ul>
           </div>
