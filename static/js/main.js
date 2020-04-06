@@ -40,8 +40,8 @@ var loader = document.getElementById("loader");
 var chartContainer = document.getElementById("chart-container");
 var getColor = {
   'AB': '#FF0000',
-  'BC': '#87CEEB',
-  'CL': '#000000', 
+  'BC': '#00FF00',
+  'CL': '#FF4500', 
 };
 
 //========================================================================
