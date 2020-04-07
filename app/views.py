@@ -35,9 +35,7 @@ def load_user(user_id):
 @app.route('/logout.html')
 def logout():
     logout_user()
-    return redirect(url_for('index',_external=True,
-        _scheme='https',
-        viewarg1=1))
+    return redirect(url_for('index'))
 
 # Register a new user
 @app.route('/register.html', methods=['GET', 'POST'])
@@ -78,9 +76,7 @@ def register():
 
             user.save()
 
-            msg = 'User created, please <a href="' + url_for('login',_external=True,
-        _scheme='https',
-        viewarg1=1) + '">login</a>'     
+            msg = 'User created, please <a href="' + url_for('login') + '">login</a>'     
 
     else:
         msg = 'Input error'     
@@ -113,9 +109,7 @@ def login():
             #if bc.check_password_hash(user.password, password):
             if user.password == password:
                 login_user(user)
-                return redirect(url_for('dashboard',_external=True,
-        _scheme='https',
-        viewarg1=1))
+                return redirect(url_for('dashboard'))
             else:
                 msg = "Wrong password. Please try again."
         else:
@@ -133,15 +127,11 @@ def dashboard():
 @app.route('/', defaults={'path': 'home.html'})
 @app.route('/<path>')
 def index(path):
-    
-    if current_user.is_authenticated:
-        return redirect(url_for('dashboard',_external=True,
-        _scheme='https',
-        viewarg1=1))
-    
     if path == "home.html":
         return render_template('layouts/home-default.html',
                                 content=render_template( 'pages/'+path) )
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
 
     content = None
 
