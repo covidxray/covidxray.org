@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include 'includes/home-header.html' %}
+  </head>
+
+  <body>
+    {% include 'includes/home-nav.html' %}
+
+    {{ content | safe }}
+  
+    {% include 'includes/home-scripts.html' %}
+    {% include 'includes/footer.html' %}
+  </body>
+
+</html>
