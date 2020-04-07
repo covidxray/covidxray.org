@@ -120,8 +120,12 @@ def login():
 
 @app.route('/index.html', methods=['GET', 'POST'])
 def dashboard():
-    return render_template('layouts/default.html',
-                            content=render_template( 'pages/index.html') )
+    if current_user.is_authenticated:
+        return render_template('layouts/default.html',
+                                content=render_template( 'pages/index.html') )
+    else:
+        return render_template('layouts/home-default.html',
+                                content=render_template( 'pages/home.html') )
 
 # App main route + generic routing
 @app.route('/', defaults={'path': 'home.html'})
