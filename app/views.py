@@ -23,6 +23,7 @@ from .chexnet.chexnet import Xray
 from .util import base64_to_pil, np_to_base64, base64_to_bytes
 import numpy as np
 import torch
+import functools
 
 app.config.update(
   PREFERRED_URL_SCHEME = 'https',
@@ -31,7 +32,7 @@ app.config.update(
   SECRET_KEY=b'1_5#y2L"F4Q8z\n\xec]/'
 )
 
-print (app.config['PREFERRED_URL_SCHEME'])
+url_for = functools.partial(url_for, _scheme='https')
 x_ray = Xray()
 
 # provide login manager with load_user callback
@@ -117,7 +118,8 @@ def login():
             #if bc.check_password_hash(user.password, password):
             if user.password == password:
                 login_user(user)
-                return redirect(url_for('dashboard',_external=True))
+                return render_template('layouts/default.html',
+                                content=render_template( 'pages/index.html'))
             else:
                 msg = "Wrong password. Please try again."
         else:
