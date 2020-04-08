@@ -23,17 +23,11 @@ from .chexnet.chexnet import Xray
 from .util import base64_to_pil, np_to_base64, base64_to_bytes
 import numpy as np
 import torch
-import functools
+from flask_sslify import SSLify
 
-app.config.update(
-  PREFERRED_URL_SCHEME = 'https',
-  TESTING=False,
-  DEBUG = False,
-  SECRET_KEY=b'1_5#y2L"F4Q8z\n\xec]/'
-)
-
-url_for = functools.partial(url_for, _scheme='https')
+sslify = SSLify(app)
 x_ray = Xray()
+
 
 # provide login manager with load_user callback
 @lm.user_loader
@@ -44,7 +38,7 @@ def load_user(user_id):
 @app.route('/logout.html')
 def logout():
     logout_user()
-    return redirect(url_for('index',_external=True))
+    return redirect(url_for('index'))
 
 # Register a new user
 @app.route('/register.html', methods=['GET', 'POST'])
@@ -118,8 +112,7 @@ def login():
             #if bc.check_password_hash(user.password, password):
             if user.password == password:
                 login_user(user)
-                return render_template('layouts/default.html',
-                                content=render_template( 'pages/index.html'))
+                return redirect(url_for('dashboard'))
             else:
                 msg = "Wrong password. Please try again."
         else:
@@ -145,7 +138,7 @@ def index(path):
         return render_template('layouts/home-default.html',
                                 content=render_template( 'pages/'+path) )
     if not current_user.is_authenticated:
-        return redirect(url_for('login',_external=True))
+        return redirect(url_for('login'))
 
     content = None
 
