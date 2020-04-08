@@ -170,10 +170,12 @@ def predict():
                 error='Invalid image'
             ), 200
         else:
+            condition_similarity_rate = []
             similarity_rate = 0.0001
             types = ""
             case = "HEALTY"
             for name, prob in img_result['condition rate']:
+                condition_similarity_rate.append({'y': round(float(prob), 3), 'name': name})
                 if round(float(prob), 3) > similarity_rate:
                    similarity_rate = round(float(prob), 3)
                    types = name
@@ -184,7 +186,8 @@ def predict():
             return jsonify(
                prob = str(round(float(similarity_rate*100), 3))+"%",
                types = str(types),
-               case = case
+               case = case,
+               condition_similarity_rate=condition_similarity_rate
             ), 200
     else:
         file_name = "NOT_DETECTED/%s.jpg" % str(uuid.uuid4())

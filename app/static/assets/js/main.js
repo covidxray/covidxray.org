@@ -43,6 +43,7 @@ var getColor = {
   'BC': '#00FF00',
   'CL': '#FF4500', 
 };
+document.getElementById("myBtn").style.width = "300px";
 
 //========================================================================
 // Main button events
@@ -140,8 +141,64 @@ function displayResult(data) {
     predResult.innerHTML = data.result + "<br><br>" + data.error;
   } else {
     predResult.innerHTML = data.case + "<br><br>" + data.types + "<br><br>" + data.prob;
+    chart = Highcharts.chart('chart-container', {
+      chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+      },
+      title: {text: 'Condition rate'},
+      tooltip: {pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'},
+      accessibility: {
+          point: {
+              valueSuffix: '%'
+          }
+      },
+      plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true,
+                  format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                  style: {
+                      fontSize: 14
+                  },
+                  showInLegend: true
+
+              }
+          }
+      },
+      series: [{
+          name: 'Brands',
+          colorByPoint: true,
+          data: [
+            {
+                name: "COVID-19",
+                y: data.condition_similarity_rate[0].y,
+                color: getColor['AB'],
+                sliced: true,
+
+            }, {
+                name: 'NORMAL',
+                y: data.condition_similarity_rate[1].y,
+                color: getColor['BC'],
+                sliced: true,
+            }, {
+                name: 'Pneumonia',
+                y: data.condition_similarity_rate[2].y,
+                color: getColor['CL'],
+                sliced: true,
+            },
+          ]
+      }]
+  });
   }
 
+  if (window.screen.width < 600)
+    chart.setSize(window.screen.width-200);
+  show(chartContainer);
   show(predResult);
 
 }
