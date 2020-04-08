@@ -35,7 +35,7 @@ def load_user(user_id):
 @app.route('/logout.html')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('index',_external=True))
 
 # Register a new user
 @app.route('/register.html', methods=['GET', 'POST'])
@@ -109,7 +109,7 @@ def login():
             #if bc.check_password_hash(user.password, password):
             if user.password == password:
                 login_user(user)
-                return redirect(url_for('dashboard'))
+                return redirect(url_for('dashboard',_external=True))
             else:
                 msg = "Wrong password. Please try again."
         else:
@@ -135,7 +135,7 @@ def index(path):
         return render_template('layouts/home-default.html',
                                 content=render_template( 'pages/'+path) )
     if not current_user.is_authenticated:
-        return redirect(url_for('login'))
+        return redirect(url_for('login',_external=True))
 
     content = None
 
