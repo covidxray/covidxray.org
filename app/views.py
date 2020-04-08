@@ -23,9 +23,7 @@ from .chexnet.chexnet import Xray
 from .util import base64_to_pil, np_to_base64, base64_to_bytes
 import numpy as np
 import torch
-from flask_sslify import SSLify
 
-sslify = SSLify(app)
 x_ray = Xray()
 
 
