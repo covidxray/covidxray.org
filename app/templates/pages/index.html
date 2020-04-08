@@ -1,79 +1,90 @@
   <!-- Main content -->
   <div class="main-content">
-
     <!-- Top navbar -->
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Dashboard</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/index.html">Dashboard</a>
         <!-- Form -->
         <!-- User -->
         {% include 'includes/user-dropdown.html' %}
-        
+
       </div>
     </nav>
-
     <!-- Header -->
-    {% include 'includes/top-stats.html' %}
-
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" 
+         style="min-height: 600px; background-image: url(/static/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+      <!-- Mask -->
+      <span class="mask bg-gradient-default opacity-8"></span>
+      <!-- Header container -->
+      <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+          <div class="col-lg-7 col-md-10">
+            <h1 class="display-2 text-white">Hello {{ current_user.user }}</h1>
+            <p class="text-white mt-0 mb-5">Please do not claim diagnostic performance of a model without a clinical study! This is not a kaggle competition dataset.</p>
+            <a href="mailto:thongmonyoudom@outlook.com" class="btn btn-info">Contact us</a>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Page content -->
     <div class="container-fluid mt--7">
       <div class="row">
-        <div class="col-xl-8 mb-5 mb-xl-0">
-          <div class="card bg-gradient-default">
-            <div class="row">
-              <div class="col">
-                <div class="card">
-                  <div class="card-header border-0">
-                    <h3 class="mb-0">Upload</h3>
-                    <div class="main">
-                      <div class="panel">
-                        <input id="file-upload" class="hidden" type="file" accept="image/x-png,image/gif,image/jpeg" />
-                        <label for="file-upload" id="file-drag" class="upload-box">
-                          <div id="upload-caption">Drop image here or click to select</div>
-                          <img id="image-preview" class="hidden" />
-                        </label>
-                      </div>
-                      <div style="margin-bottom: 2rem;">
-                        <input type="button" value="Submit" class="button" onclick="submitImage();" />
-                        <input type="button" value="Clear" class="button" onclick="clearImage();" />
-                      </div>
-                      <div id="result-box">
-                        <div id="image-box">
-                          <img id="image-display" />
-                          <div id="pred-result" class="hidden"></div>
-                          <svg id="loader" class="hidden" viewBox="0 0 32 32" width="32" height="32">
-                            <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
-                          </svg>
-                        </div>
-                        <div id="chart-container"></div>
-                      </div>
-                    </div>
-                  </div>
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+          <div class="card card-profile shadow">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a href="#">
+                    <img src="/static/assets/img/1.jpeg" class="rounded-circle">
+                  </a>
                 </div>
               </div>
-            </div> 
+            </div>
+            <div class="card-body pt-0 pt-md-4">
+              <div class="main">
+                <div class="panel">
+                  <input id="file-upload" class="hidden" type="file" accept="image/x-png,image/gif,image/jpeg" />
+                  <label for="file-upload" id="file-drag" class="upload-box">
+                    <div id="upload-caption">Drop image here or click to select</div>
+                    <img id="image-preview" class="hidden" />
+                  </label>
+                </div>
+                <div style="margin-bottom: 2rem;">
+                  <input type="button" value="Submit" class="button" onclick="submitImage();" />
+                  <input type="button" value="Clear" class="button" onclick="clearImage();" />
+                </div>
+              </div>
+            </div>
           </div>
+            
         </div>
-        <div class="col-xl-4">
-          <div class="card shadow">
-            <div class="card-header bg-transparent">
+        <div class="col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
               <div class="row align-items-center">
-                <div class="col">
-                  <h2 class="mb-0">Note</h2>
+                <div class="col-8">
+                  <h3 class="mb-0">Result</h3>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <!-- Chart -->
-              <div class="chart">
-                <h3 style="color: red;">" Please do not claim diagnostic performance of a model without a clinical study! This is not a kaggle competition dataset." </h3>
+              <div id="result-box" class="l_result__box">
+                <div id="image-box">
+                  <img id="image-display" />
+                  <div id="pred-result" class="hidden"></div>
+                  <svg id="loader" class="hidden" viewBox="0 0 32 32" width="32" height="32">
+                    <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
+                  </svg>
+                </div>
+                <div id="chart-container"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-     
 
+      {% include 'includes/footer.html' %}
+      
     </div>
   </div>

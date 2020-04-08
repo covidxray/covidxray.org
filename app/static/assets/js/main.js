@@ -197,7 +197,7 @@ function displayResult(data) {
   }
 
   if (window.screen.width < 600)
-    chart.setSize(window.screen.width-200);
+    chart.setSize(window.screen.width-10);
   show(chartContainer);
   show(predResult);
 
