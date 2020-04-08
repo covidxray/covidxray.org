@@ -3,6 +3,7 @@ services:
   web:
     image: "covid-flask"
     restart: always
+    working_dir: /covid
     ports:
       - "5002:5000"
     volumes:
