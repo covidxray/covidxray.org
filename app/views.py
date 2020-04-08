@@ -24,6 +24,14 @@ from .util import base64_to_pil, np_to_base64, base64_to_bytes
 import numpy as np
 import torch
 
+app.config.update(
+  PREFERRED_URL_SCHEME = 'https',
+  TESTING=False,
+  DEBUG = False,
+  SECRET_KEY=b'1_5#y2L"F4Q8z\n\xec]/'
+)
+
+print (app.config['PREFERRED_URL_SCHEME'])
 x_ray = Xray()
 
 # provide login manager with load_user callback
