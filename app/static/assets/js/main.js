@@ -43,7 +43,6 @@ var getColor = {
   'BC': '#00FF00',
   'CL': '#FF4500', 
 };
-document.getElementById("myBtn").style.width = "300px";
 
 //========================================================================
 // Main button events
