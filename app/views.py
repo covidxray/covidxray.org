@@ -23,6 +23,7 @@ from .chexnet.chexnet import Xray
 from .util import base64_to_pil, np_to_base64, base64_to_bytes
 import numpy as np
 import torch
+from flask import flash
 
 x_ray = Xray()
 
@@ -88,7 +89,6 @@ def register():
 # Authenticate user
 @app.route('/login.html', methods=['GET', 'POST'])
 def login():
-    
     # Declare the login form
     form = LoginForm(request.form)
 
@@ -97,7 +97,6 @@ def login():
 
     # check if both http method is POST and form is valid on submit
     if form.validate_on_submit():
-
         # assign form data to variables
         username = request.form.get('username', '', type=str)
         password = request.form.get('password', '', type=str) 
