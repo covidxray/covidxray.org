@@ -222,6 +222,11 @@
     }
 }
 @media only screen and (max-width: 719px) and (min-width: 250px) {
+    .l_container__question {
+        padding: 0;
+        padding-top: 4rem;
+    }
+    
     .l_service__technology__container {
         margin: 0 15px;
     }
@@ -241,11 +246,6 @@
     }
     .c_text_card p {
         text-align: left;
-    }
-
-    .l_container__question {
-        padding: 0;
-        padding-top: 4rem;
     }
 }
 
