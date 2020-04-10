@@ -8,6 +8,9 @@
 </h1>
 
 <h4 align="center">COVID 19 X RAY SCANNER
+  
+## CircleCI
+[![CircleCI](https://circleci.com/gh/covidxray/covidxray.org.svg?style=svg)](https://circleci.com/gh/covidxray/covidxray.org)
 
 ## DATASETS
   Download the covid dataset and extract it under project folder [link](https://drive.google.com/file/d/1iCdBP6F7xfqQH77eeclTRkOimMRjv237/view?usp=sharing)
