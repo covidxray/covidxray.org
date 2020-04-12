@@ -1,0 +1,156 @@
+
+  <div class="main-content">
+    <!-- Top navbar -->
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+      <div class="container-fluid">
+        <!-- Brand -->
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/tables.html">Dashboard</a>
+          <!-- Form -->
+          <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+            <div class="form-group mb-0">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+                <input class="form-control" placeholder="Search" type="text">
+              </div>
+            </div>
+          </form>
+        <!-- User -->
+        {% include 'includes/user-dropdown.html' %}
+        
+      </div>
+    </nav>
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+      <div class="container-fluid">
+        <div class="header-body">
+          <!-- Card stats -->
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <!-- Table -->
+      <div class="row">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Result</h3>
+                </div>
+                <div class="col-4 text-right">
+                  <button type="button" class="btn btn-sm btn-primary">See all</button>
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Patient name</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Phone number</th>
+                    <th scope="col">Covid rate</th>
+                    <th scope="col">Normal rate</th>
+                    <th scope="col">Pneumonia rate</th>
+                    <th scope="col">Note</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for information in informations %}
+                  <tr>
+                    <td>
+                     {{information.name}}
+                    </td>
+                    <td>
+                      {{information.gender}}
+                    </td>
+                    <td>
+                      {{information.age}}
+                    </td>
+                    <td>
+                      {{information.phone}}
+                    </td>
+                    <td style="color:red;">
+                      {{information.covid}}
+                    </td>
+                    <td>
+                      {{information.normal}}
+                    </td>
+                    <td>
+                      {{information.pneumonia}}
+                    </td>
+                    <td>
+                      {{information.note}}
+                    </td>
+                    <td class="text-right">
+                      <div class="dropdown">
+                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                          <a data-toggle="modal" class="dropdown-item" id={{information.id}}  data-target="#confirm_modal" onclick="aPassValueFunction(this)">Delete</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer py-4">
+              <nav aria-label="...">
+                <ul class="pagination justify-content-end mb-0">
+                  {{ pagination.links }}
+                </ul>
+               
+              </nav>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% include 'includes/footer.html' %}
+      
+    </div>
+  </div>
+
+  <!-- Small modal -->
+
+  <div class="modal" tabindex="-1" role="dialog" id="confirm-modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Confirm - Are you sure?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <form action="{{ url_for('results') }}" method="POST">
+          <input name="id_result" type="hidden" id="id_result">
+          <input class="btn btn-secondary" type="submit">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+
+
+<script>
+  function aPassValueFunction(obj){
+      let valuefromID = obj.id;
+      $('#id_result').val(valuefromID);
+      $("#confirm-modal").modal("show");
+  }
+
+</script>

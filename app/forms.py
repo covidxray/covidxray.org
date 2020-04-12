@@ -17,3 +17,15 @@ class RegisterForm(FlaskForm):
 	username    = StringField  (u'Username'  , validators=[DataRequired()])
 	password    = PasswordField(u'Password'  , validators=[DataRequired()])
 	email       = StringField  (u'Email'     , validators=[DataRequired(), Email()])
+
+
+class SaveForm(FlaskForm):
+	name    = StringField  (u'Patient name'  , validators=[DataRequired()])
+	gender    = StringField  (u'Gender'  , validators=[DataRequired()])
+	age       = StringField  (u'Age'  , validators=[DataRequired()])
+	phone     = StringField  (u'Phone number'  , validators=[DataRequired()])
+	location  = StringField  (u'Location'  , validators=[DataRequired()])
+	note     = StringField  (u'Clinical notes'  , validators=[DataRequired()])
+	covid     = StringField  (u'covid' )
+	normal     = StringField  (u'normal')
+	pneumonia     = StringField  (u'pneumonia')

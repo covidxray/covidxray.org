@@ -39,17 +39,26 @@ class Information(db.Model):
     name    = db.Column(db.String(120), unique = True)
     gender = db.Column(db.String(5))
     age = db.Column(db.Integer)
-    phone = db.Column(db.String(5))
-    message = db.Column(db.String(500))
-    
-
-    def __init__(self, user, email, password):
-        self.user       = user
+    phone = db.Column(db.String(15))
+    location = db.Column(db.String(500))
+    note = db.Column(db.String(500))
+    covid = db.Column(db.String(4))
+    normal = db.Column(db.String(4))
+    pneumonia = db.Column(db.String(4))
+    def __init__(self, user_id, name, gender,age,phone,location,note,covid,normal,pneumonia):
+        self.user_id       = user_id
         self.name   = name
+        self.gender      = gender
+        self.age      = age
         self.phone      = phone
+        self.location      = location
+        self.note      = note
+        self.covid      = covid
+        self.normal      = normal
+        self.pneumonia      = pneumonia
 
     def __repr__(self):
-        return '<User %r - %s>' % (self.id) % (self.name)
+        return str(self.id)
 
     def save(self):
 

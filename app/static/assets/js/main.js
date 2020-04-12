@@ -4,12 +4,18 @@
 
 var fileDrag = document.getElementById("file-drag");
 var fileSelect = document.getElementById("file-upload");
-
+var covid = document.getElementById("covid");
+var pneumonia = document.getElementById("pneumonia");
+var normal = document.getElementById("normal");
+var result = []
 // Add event listeners
-fileDrag.addEventListener("dragover", fileDragHover, false);
-fileDrag.addEventListener("dragleave", fileDragHover, false);
-fileDrag.addEventListener("drop", fileSelectHandler, false);
-fileSelect.addEventListener("change", fileSelectHandler, false);
+if (fileDrag != null) {
+  fileDrag.addEventListener("dragover", fileDragHover, false);
+  fileDrag.addEventListener("dragleave", fileDragHover, false);
+  fileDrag.addEventListener("drop", fileSelectHandler, false);
+  fileSelect.addEventListener("change", fileSelectHandler, false);
+} 
+
 
 function fileDragHover(e) {
   // prevent default behaviour
@@ -52,7 +58,7 @@ function submitImage() {
   // action for the submit button
 
   if (!imageDisplay.src || !imageDisplay.src.startsWith("data")) {
-    window.alert("Please select an image before submit.");
+    $("#confirm-modal").modal("show");
     return;
   }
 
@@ -78,6 +84,7 @@ function clearImage() {
   hide(predResult);
   chartContainer.innerHTML = "";
   show(uploadCaption);
+  result = []
 
   imageDisplay.classList.remove("loading");
 }
@@ -138,7 +145,9 @@ function displayResult(data) {
   hide(loader);
   if (data.result == "NOT DETECTED") {
     predResult.innerHTML = data.result + "<br><br>" + data.error;
+    result = []
   } else {
+    result = data.condition_similarity_rate
     predResult.innerHTML = data.case + "<br><br>" + data.types + "<br><br>" + data.prob;
     chart = Highcharts.chart('chart-container', {
       chart: {
@@ -198,6 +207,20 @@ function displayResult(data) {
   show(chartContainer);
   show(predResult);
 
+}
+
+function submitFormInformation() {
+  if(result.length == 0) {
+    $("#confirm-modal").modal("show");
+    return false;
+  } else {
+    covid.value = result[0].y
+    normal.value = result[1].y
+    pneumonia.value = result[2].y
+    clearImage()
+    return true;
+
+  }
 }
 
 function hide(el) {

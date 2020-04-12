@@ -14,8 +14,8 @@ from werkzeug.exceptions import HTTPException, NotFound, abort
 
 # App modules
 from app        import app, lm, db, bc
-from app.models import User
-from app.forms  import LoginForm, RegisterForm
+from app.models import User,Information
+from app.forms  import LoginForm, RegisterForm,SaveForm
 
 import os
 import uuid
@@ -24,7 +24,7 @@ from .util import base64_to_pil, np_to_base64, base64_to_bytes
 import numpy as np
 import torch
 from flask import flash
-
+from flask_paginate import Pagination, get_page_args
 x_ray = Xray()
 
 
@@ -121,11 +121,55 @@ def login():
 @app.route('/index.html', methods=['GET', 'POST'])
 def dashboard():
     if current_user.is_authenticated:
+        form = SaveForm(request.form)
+        msg = None
+        if form.validate_on_submit():
+            user_id = current_user.id
+            name = request.form.get('name', '', type=str)
+            gender = request.form.get('gender', '', type=str)
+            age = request.form.get('age', '', type=int)
+            phone = request.form.get('phone', '', type=str)
+            location = request.form.get('phone', '', type=str)
+            note = request.form.get('note', '', type=str)
+            covid = request.form.get('covid', '', type=str)
+            normal = request.form.get('normal', '', type=str)
+            pneumonia = request.form.get('pneumonia', '', type=str)
+            information = Information.query.filter_by(name=name).first()
+            
+            if information:
+               msg = 'Error: User exists!' 
+            else:
+               if covid:
+                    information =  Information(user_id,name,gender,age,phone,location,note,covid,normal,pneumonia)
+                    information.save()
+                    msg = "Done"     
+            return render_template('layouts/default.html',
+                                content=render_template( 'pages/index.html',form=form, msg=msg ,informations=information))
         return render_template('layouts/default.html',
-                                content=render_template( 'pages/index.html') )
+                                content=render_template( 'pages/index.html',form=form, msg=msg ))
     else:
         return render_template('layouts/home-default.html',
                                 content=render_template( 'pages/home.html') )
+
+@app.route('/result.html', methods=['GET', 'POST'])
+def results():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+    if request.method == 'POST':
+       information = Information.query.filter_by(id=request.form['id_result']).first()
+       db.session.delete(information)
+       db.session.commit()
+    
+    form = SaveForm(request.form)
+    information = Information.query.filter_by(user_id=current_user.id)
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                           per_page_parameter='per_page')
+    total = information.count()
+    pagination_users = get_users(offset=offset, per_page=per_page,users=information)
+    pagination = Pagination(page=page, per_page=per_page, total=total,
+                            css_framework='bootstrap4')
+    return render_template('layouts/default.html',content=render_template( 'pages/result.html', informations=pagination_users,page=page,per_page=per_page,pagination=pagination,form=form) )
+
 
 # App main route + generic routing
 @app.route('/', defaults={'path': 'home.html'})
@@ -142,8 +186,9 @@ def index(path):
     try:
 
         # try to match the pages defined in -> pages/<input file>
+        information = Information.query.filter_by(user_id=current_user.id).first()
         return render_template('layouts/default.html',
-                                content=render_template( 'pages/'+path) )
+                                content=render_template( 'pages/'+path,informations=information) )
     except:
         
         return render_template('layouts/auth-default.html',
@@ -196,6 +241,7 @@ def predict():
         ), 200
 
 
+
 # Return sitemap 
 @app.route('/sitemap.xml')
 def sitemap():
@@ -209,3 +255,6 @@ def offline():
 @app.route('/service-worker.js')
 def sw():
     return app.send_static_file('service-worker.js')
+
+def get_users(offset=0, per_page=10,users=None):
+    return users[offset: offset + per_page]
