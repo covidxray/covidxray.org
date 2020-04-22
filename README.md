@@ -27,7 +27,7 @@ $ git clone https://github.com/covidxray/covidxray.org.git
 $ cd covidxray.org
 $
 $ # Virtualenv modules installation (Unix based systems)
-$ virtualenv --no-site-packages covid-19
+$ virtualenv covid-19
 $ source covid-19/bin/activate
 $
 $ # Virtualenv modules installation (Windows based systems)
