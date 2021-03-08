@@ -16,6 +16,9 @@
   Download the covid dataset and extract it under project folder [link](https://drive.google.com/file/d/1iCdBP6F7xfqQH77eeclTRkOimMRjv237/view?usp=sharing)
   
  Download the xray dataset and extract it under project folder [link](https://drive.google.com/file/d/1lLNaiPtQwMDvn2ON_7dZRX8XiQRqTW6C/view?usp=sharing)
+ 
+## User data query 
+ View here [link](https://drive.google.com/file/d/13zwy89ZYRQpd-S-VbHBEM0I-hkdDSVHD/view?usp=sharing)
 ## Backend
    - FLASK
 
