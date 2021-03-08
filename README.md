@@ -18,7 +18,7 @@
  Download the xray dataset and extract it under project folder [link](https://drive.google.com/file/d/1lLNaiPtQwMDvn2ON_7dZRX8XiQRqTW6C/view?usp=sharing)
  
 ## User data query 
- View here [link](https://drive.google.com/file/d/13zwy89ZYRQpd-S-VbHBEM0I-hkdDSVHD/view?usp=sharing)
+ View here [link](https://drive.google.com/file/d/1RLd7tYXuw-Z9Je3KtJlGbQOg4fjo9_8f/view?usp=sharing)
 ## Backend
    - FLASK
 
